@@ -47,7 +47,7 @@ Config.Shops = {
 -- Configurazione del test drive
 Config.TestDrive = {
    
-    seconds = 60,  -- Durata del test drive in secondi
+    seconds = 45,  -- Durata del test drive in secondi
   
     coords  = vector3(-45.1907, -1078.7808, 26.6746),   -- Coordinate per il test drive
     

@@ -95,7 +95,7 @@ Citizen.CreateThread(function()
         
         for k,v in pairs(Config.Shops) do
             TriggerEvent('gridsystem:registerMarker', {
-                name = 'inventario',
+                name = '_salone',
                 pos = v.coord,
                 type = 22,
                 color = { r = 0, g = 0, b = 255 },
@@ -208,7 +208,7 @@ RegisterNUICallback("buy", function(data, cb)
     print(curVehName)
     local veh = getVehicleFromName(curVehName)
     print(ESX.DumpTable(veh))
-    ESX.TriggerServerCallback("Config-vehicleshop:checkPrice", function(pg)
+    ESX.TriggerServerCallback("krs-vehicleshop:checkPrice", function(pg)
         if pg == true then
             Citizen.CreateThread(function()
                 RequestModel(GetHashKey(veh.name))
@@ -221,7 +221,7 @@ RegisterNUICallback("buy", function(data, cb)
                 SetVehicleCustomSecondaryColour(xVehicle, tonumber(rgb.r), tonumber(rgb.g), tonumber(rgb.b))
                 SetPedIntoVehicle(PlayerPed, xVehicle, -1)
                 Wait(500)
-                TriggerServerEvent('Config-vehicleshop:givecar', ESX.Game.GetVehicleProperties(xVehicle))
+                TriggerServerEvent('krs-vehicleshop:givecar', ESX.Game.GetVehicleProperties(xVehicle))
                 rgb = {}
                 DisplayRadar(1)
                 SetNuiFocus(0, 0)
@@ -249,7 +249,7 @@ end
 
 RegisterNUICallback("checkPlatePrice", function(data, cb)
     plate = data.plate
-    ESX.TriggerServerCallback("Config-vehicleshop:checkPlatePrice", function(pg) cb(pg) if pg == true then SetVehicleNumberPlateText(vehicle, plate) end end, plate)
+    ESX.TriggerServerCallback("krs-vehicleshop:checkPlatePrice", function(pg) cb(pg) if pg == true then SetVehicleNumberPlateText(vehicle, plate) end end, plate)
 end)
 
 function moveCarRight(value)
